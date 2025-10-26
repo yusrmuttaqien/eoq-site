@@ -1,75 +1,68 @@
-# React + TypeScript + Vite
+# Kalkulator EOQ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Kalkulator EOQ (Economic Order Quantity/Kuantitas Pesanan Ekonomis) adalah aplikasi web untuk bisnis menentukan kuantitas pesanan optimal untuk meminimalkan biaya inventaris agar meminimalkan biaya inventaris total.
 
-Currently, two official plugins are available:
+## Fitur
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Perhitungan EOQ secara real-time dengan pembaruan input dinamis
+- Perhitungan kuantitas pesanan optimal untuk meminimalkan biaya inventaris
+- Tampilan biaya pemesanan dan biaya penyimpanan tahunan
+- Rincian visual biaya tahunan total
+- Dukungan format mata uang Rupiah Indonesia (IDR)
+- Desain responsif untuk pengalaman pengguna yang optimal
 
-## React Compiler
+## Rumus yang Digunakan
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Perhitungan EOQ berdasarkan pada rumus Kuantitas Pesanan Ekonomis:
 
-Note: This will impact Vite dev & build performances.
+**EOQ = √[(2 × D × Co) / Ch]**
 
-## Expanding the ESLint configuration
+Dimana:
+- D = Permintaan Tahunan (unit/tahun)
+- Co = Biaya Pemesanan (Rp per pesanan)
+- Ch = Biaya Penyimpanan (Rp per unit/tahun)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Apa itu Economic Order Quantity?
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Economic Order Quantity (EOQ) adalah model manajemen inventaris fundamental yang menentukan kuantitas pesanan optimal yang meminimalkan total biaya inventaris. EOQ mewakili titik ideal di mana biaya pemesanan dan biaya penyimpanan seimbang untuk mencapai biaya inventaris minimum.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Biaya Pemesanan**: Biaya yang terkait dengan pemesanan dan menerima pesanan
+- **Biaya Penyimpanan**: Biaya yang terkait dengan menyimpan dan memelihara inventaris
+- **Keseimbangan Optimal**: EOQ mengidentifikasi kuantitas pesanan yang meminimalkan total dari kedua jenis biaya ini
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Instalasi
+
+1. Clone repositori:
+   ```bash
+   git clone https://github.com/yusrmuttaqien/eoq-site.git
+   ```
+
+2. Pindah ke direktori proyek:
+   ```bash
+   cd eoq-site
+   ```
+
+3. Instal dependensi:
+   ```bash
+   bun install
+   ```
+   atau jika menggunakan npm:
+   ```bash
+   npm install
+   ```
+
+## Pengembangan
+
+Untuk menjalankan server pengembangan:
+
+```bash
+bun dev
+```
+atau jika menggunakan npm:
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Kunjungi `http://localhost:5173` di browser Anda untuk melihat aplikasi.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
